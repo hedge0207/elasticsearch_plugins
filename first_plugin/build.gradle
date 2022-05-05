@@ -1,0 +1,34 @@
+buildscript {
+    ext {
+        version_es = "7.14.0"
+        log4jVersion = "2.17.0"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.elasticsearch.gradle:build-tools:${version_es}"
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'elasticsearch.esplugin'
+
+dependencies {
+    repositories {
+        mavenCentral()
+    }
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '7.14.0'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.14.0'
+}
+
+esplugin {
+    name 'rest-handler'
+    description 'An example plugin showing how to register a REST handler'
+    classname 'org.elasticsearch.example.resthandler.ExampleRestHandlerPlugin'
+    licenseFile rootProject.file('SSPL-1.0+ELASTIC-LICENSE-2.0.txt')
+    noticeFile rootProject.file('NOTICE.txt')
+}
