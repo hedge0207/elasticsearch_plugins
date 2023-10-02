@@ -1,0 +1,12 @@
+---
+"foo_bar plugin test - removes all tokens except foo and bar":
+  - do:
+      indices.analyze:
+        body:
+          text: foo bar baz qux
+          tokenizer: standard
+          filter:
+            - type: "foo_bar"
+  - length: { tokens: 2 }
+  - match:  { tokens.0.token: "foo" }
+  - match:  { tokens.1.token: "bar" }
