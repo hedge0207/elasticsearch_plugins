@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.elasticsearch.gradle:build-tools:8.7.0"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+version '1.0-SNAPSHOT'
+
+apply plugin: 'elasticsearch.esplugin'
+
+esplugin {
+    name 'first-rest-handler'
+    description 'My first plugin'
+    classname 'org.elasticsearch.example.resthandler.ExampleRestHandlerPlugin'
+}
