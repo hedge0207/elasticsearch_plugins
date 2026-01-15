@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url "https://artifacts.elastic.co/maven" }
+}
+
+dependencies {
+    compileOnly "org.elasticsearch:elasticsearch:8.11.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+// JAR 파일 생성 시 META-INF 설정을 포함하도록 함
+jar {
+    manifest {
+        attributes(
+                'Licensed-In': 'Elasticsearch'
+        )
+    }
+}
